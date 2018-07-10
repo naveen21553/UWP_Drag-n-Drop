@@ -8,7 +8,41 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <Page.Resources>
+        <Storyboard x:Name="MediaPlayerStoryBoard">
+            <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True" Storyboard.TargetProperty="(MediaElement.Volume)" Storyboard.TargetName="MediaPlayer">
+                <EasingDoubleKeyFrame KeyTime="0" Value=".5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:6" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:10" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:15" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Page.Resources>
+    
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Background="SteelBlue"
+                    AllowDrop="True"
+                    DragOver="StackPanel_DragOver"
+                    Drop="StackPanel_Drop"/>
+
+        <Image Name="ImageViewer" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Stretch="UniformToFill"/>
+
+        
+        <StackPanel Margin="20" Grid.Row="2">
+            <TextBlock Text="Local Path: " FontSize="22"/>
+            <TextBox Name="PathTextBlock"/>
+        </StackPanel>
+        
+        <MediaElement x:Name="MediaPlayer"
+                      AutoPlay="True"
+                      />
+
 
     </Grid>
 </Page>
